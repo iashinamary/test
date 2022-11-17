@@ -1,4 +1,4 @@
-package com.example.test_app.utils.models
+package com.example.test_app.models
 
 data class Data(
     val id_hd_route: Int,

@@ -1,12 +1,12 @@
-package com.example.test_app.utils.ui.adapter
+package com.example.test_app.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_app.databinding.ItemLayoutBinding
-import com.example.test_app.utils.models.Data
-import com.example.test_app.utils.ui.utils.DataDiffCallback
+import com.example.test_app.models.Data
+import com.example.test_app.ui.utils.DataDiffCallback
 
 class ScreenAdapter: RecyclerView.Adapter<ScreenViewHolder>() {
 

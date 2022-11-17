@@ -1,4 +1,4 @@
-package com.example.test_app.utils.models
+package com.example.test_app.models
 
 data class Elements(
     val `data`: List<Data>,
