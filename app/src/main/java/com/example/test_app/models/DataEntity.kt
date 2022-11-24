@@ -1,8 +1,12 @@
 package com.example.test_app.models
 
-import java.util.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Data(
+@Entity(tableName = "data")
+data class DataEntity(
+    @PrimaryKey
+    val id: String,
     val id_hd_route: Int,
     val id_pos: Int,
     val id_record: Int,
@@ -10,8 +14,3 @@ data class Data(
     val nom_route: String,
     val nom_zak: String
 )
-
-fun Data.toDataEntity(): DataEntity {
-    return DataEntity(id_hd_route., id_pos, id_record,
-    nom_nakl, nom_route, nom_zak)
-}

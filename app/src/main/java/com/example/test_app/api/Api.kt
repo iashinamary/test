@@ -7,7 +7,6 @@ import retrofit2.http.GET
 
 interface Api {
 
-
     @GET("/getdocumentlist")
     suspend fun getInfo(): Elements
 }
