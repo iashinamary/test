@@ -12,6 +12,6 @@ data class Data(
 )
 
 fun Data.toDataEntity(): DataEntity {
-    return DataEntity(id_hd_route., id_pos, id_record,
+    return DataEntity(UUID.randomUUID().toString(), id_hd_route, id_pos, id_record,
     nom_nakl, nom_route, nom_zak)
 }

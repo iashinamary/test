@@ -14,13 +14,29 @@ class MainActivity: AppCompatActivity() {
     private val viewModel by viewModel<MainActivityViewModel>()
 
     private val adapter : ScreenAdapter by lazy { ScreenAdapter() }
+
+    var counterCopies = 0
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel.loadData()
         subscribe()
+        viewModel.loadData()
+        clickButton()
+    }
+
+    private fun clickButton() {
+        binding.apply {
+            addToBottom.setOnClickListener {
+                counterCopies++
+                counter.text = counterCopies.toString()
+            }
+            addToTop.setOnClickListener{
+                counterCopies++
+                counter.text = counterCopies.toString()
+            }
+        }
     }
 
     private fun subscribe() {
@@ -28,6 +44,8 @@ class MainActivity: AppCompatActivity() {
             adapter.setList(it)
         }
     }
+
+
 
 
 }

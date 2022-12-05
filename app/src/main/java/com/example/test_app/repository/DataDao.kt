@@ -16,4 +16,5 @@ interface DataDao {
 
     @Query("SELECT * FROM data")
     fun getAllData() : LiveData<List<Data>>
+
 }
