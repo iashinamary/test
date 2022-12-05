@@ -14,7 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val authClient: OkHttpClient = OkHttpClient.Builder()
-    .addInterceptor(AuthInterceptor())
+    .addInterceptor(AuthInterceptor("l12345678", "p12345678"))
     .build()
 val module = module{
 

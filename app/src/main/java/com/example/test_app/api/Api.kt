@@ -8,7 +8,6 @@ import retrofit2.http.Headers
 
 
 interface Api {
-    @Headers("Name: Authentication-required")
-    @GET("/getdocumentlist")
+    @GET("getdocumentlist")
     suspend fun getInfo(): Elements
 }

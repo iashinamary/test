@@ -1,5 +1,6 @@
 package com.example.test_app.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,8 +24,8 @@ class MainActivityViewModel(
             val result = api.getInfo()
             //В map превращай одну сущность в другую, более подходящую для записи в БД
             result.data.map { data ->
+                Log.d("@@@", data.toString())
                 data.toDataEntity()
-
             }.forEach {
                 repo.addData(it)
             }

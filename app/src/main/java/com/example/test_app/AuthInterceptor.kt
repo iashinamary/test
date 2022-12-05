@@ -1,20 +1,17 @@
 package com.example.test_app
 
+import android.util.Log
 import okhttp3.Credentials
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AuthInterceptor : Interceptor {
+class AuthInterceptor(val log : String, val pass : String) : Interceptor {
+
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-
-        if (request.header("Authentication-required") != null) {
-            request = request.newBuilder()
-                .addHeader("username", "l12345678")
-                .addHeader("password", "p12345678")
-                .build()
-        }
-
+        request = request.newBuilder()
+            .addHeader("Authorization", Credentials.basic(log, pass))
+            .build()
         return chain.proceed(request)
     }
 }

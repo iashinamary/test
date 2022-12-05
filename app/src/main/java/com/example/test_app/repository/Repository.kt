@@ -6,9 +6,7 @@ import com.example.test_app.models.DataEntity
 
 class Repository(private val dao: DataDao) {
 
-    fun getAllData() : LiveData<List<Data>>{
-       return dao.getAllData()
-    }
+    fun getAllData() : LiveData<List<Data>> = dao.getAllData()
 
     suspend fun addData(data: DataEntity) = dao.addData(data)
 }
