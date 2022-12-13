@@ -10,6 +10,7 @@ import com.example.test_app.models.Data
 import com.example.test_app.models.DataEntity
 import com.example.test_app.models.toDataEntity
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.lang.Exception
 
 class MainActivityViewModel(
@@ -21,10 +22,11 @@ class MainActivityViewModel(
 
     fun loadData() {
         viewModelScope.launch {
+
             val result = api.getInfo()
+
             //В map превращай одну сущность в другую, более подходящую для записи в БД
             result.data.map { data ->
-                Log.d("@@@", data.toString())
                 data.toDataEntity()
             }.forEach {
                 repo.addData(it)

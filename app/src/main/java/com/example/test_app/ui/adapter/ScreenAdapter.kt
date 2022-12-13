@@ -2,6 +2,7 @@ package com.example.test_app.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_app.databinding.ItemLayoutBinding
@@ -24,6 +25,10 @@ class ScreenAdapter: RecyclerView.Adapter<ScreenViewHolder>() {
         holder.binding.nomRoute.text = item.nom_route
         holder.binding.idHdRoute.text = item.id_hd_route.toString()
         holder.binding.nomNakl.text = item.nom_nakl
+
+        holder.binding.item.setOnClickListener{
+            Toast.makeText(holder.itemView.context, "Item's selected", Toast.LENGTH_SHORT)
+        }
     }
 
     override fun getItemCount(): Int = list.size

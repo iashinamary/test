@@ -18,7 +18,6 @@ val authClient: OkHttpClient = OkHttpClient.Builder()
     .build()
 val module = module{
 
-    
 
     single {
         Retrofit.Builder()

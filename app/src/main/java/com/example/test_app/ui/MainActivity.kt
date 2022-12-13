@@ -28,6 +28,8 @@ class MainActivity: AppCompatActivity() {
 
     private fun clickButton() {
         binding.apply {
+            elements.adapter = adapter
+
             addToBottom.setOnClickListener {
                 counterCopies++
                 counter.text = counterCopies.toString()
@@ -44,6 +46,7 @@ class MainActivity: AppCompatActivity() {
             adapter.setList(it)
         }
     }
+
 
 
 
