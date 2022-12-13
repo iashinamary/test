@@ -2,10 +2,11 @@ package com.example.test_app.ui.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.test_app.models.Data
+import com.example.test_app.models.DataEntity
 
 class DataDiffCallback(
-    private val oldList: List<Data>,
-    private val newList: List<Data>
+    private val oldList: List<DataEntity>,
+    private val newList: List<DataEntity>
 ): DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size

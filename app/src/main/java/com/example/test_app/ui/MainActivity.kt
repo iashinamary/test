@@ -29,6 +29,9 @@ class MainActivity: AppCompatActivity() {
     private fun clickButton() {
         binding.apply {
             elements.adapter = adapter
+            adapter.bindOnClick { item->
+                viewModel.saveChecked(item)
+            }
 
             addToBottom.setOnClickListener {
                 counterCopies++

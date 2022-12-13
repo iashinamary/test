@@ -18,18 +18,31 @@ class MainActivityViewModel(
     private val repo : Repository
 ) : ViewModel() {
 
-    val data: LiveData<List<Data>> = repo.getAllData()
+    val data: LiveData<List<DataEntity>> = repo.getAllData()
 
     fun loadData() {
         viewModelScope.launch {
+            try {
+                val result = api.getInfo()
 
-            val result = api.getInfo()
+                //В map превращай одну сущность в другую, более подходящую для записи в БД
+                result.data.map { data ->
+                    data.toDataEntity()
+                }.forEach {
+                    repo.addData(it)
+                }
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 
-            //В map превращай одну сущность в другую, более подходящую для записи в БД
-            result.data.map { data ->
-                data.toDataEntity()
-            }.forEach {
-                repo.addData(it)
+    fun saveChecked(item: DataEntity) {
+        viewModelScope.launch {
+            if (!item.isChecked) {
+                repo.saveCheck(item.id_record)
+            } else {
+                repo.unselectSected(item.id_record)
             }
         }
     }
