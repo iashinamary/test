@@ -8,7 +8,6 @@
         android:id="@+id/item"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="30dp"
-        android:backgroundTint="#8C8C8C"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true">
@@ -53,7 +52,8 @@
                 android:id="@+id/selected_checkbox"
                 android:enabled="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
         </LinearLayout>
 
 

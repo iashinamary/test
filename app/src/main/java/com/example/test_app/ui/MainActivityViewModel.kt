@@ -1,9 +1,12 @@
 package com.example.test_app.ui
 
 import android.util.Log
+import androidx.cardview.widget.CardView
+import androidx.core.graphics.toColor
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.test_app.R
 import com.example.test_app.repository.Repository
 import com.example.test_app.api.ApiService
 import com.example.test_app.models.Data
@@ -19,6 +22,7 @@ class MainActivityViewModel(
 ) : ViewModel() {
 
     val data: LiveData<List<DataEntity>> = repo.getAllData()
+
 
     fun loadData() {
         viewModelScope.launch {

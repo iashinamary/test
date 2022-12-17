@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.test_app.databinding.MainActivityLayoutBinding
 import com.example.test_app.ui.adapter.ScreenAdapter
+import com.example.test_app.ui.adapter.ScreenViewHolder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity: AppCompatActivity() {
@@ -34,6 +35,7 @@ class MainActivity: AppCompatActivity() {
             }
 
             addToBottom.setOnClickListener {
+
                 counterCopies++
                 counter.text = counterCopies.toString()
             }
@@ -47,6 +49,7 @@ class MainActivity: AppCompatActivity() {
     private fun subscribe() {
         viewModel.data.observe(this){
             adapter.setList(it)
+
         }
     }
 
