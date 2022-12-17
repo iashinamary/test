@@ -35,13 +35,13 @@ class MainActivity: AppCompatActivity() {
             }
 
             addToBottom.setOnClickListener {
-
                 counterCopies++
                 counter.text = counterCopies.toString()
             }
             addToTop.setOnClickListener{
                 counterCopies++
                 counter.text = counterCopies.toString()
+                viewModel.addTopCopy()
             }
         }
     }

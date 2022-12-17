@@ -15,6 +15,7 @@ import com.example.test_app.models.toDataEntity
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.lang.Exception
+import kotlin.random.Random
 
 class MainActivityViewModel(
     private val api : ApiService,
@@ -47,6 +48,25 @@ class MainActivityViewModel(
                 repo.saveCheck(item.id_record)
             } else {
                 repo.unselectSected(item.id_record)
+            }
+        }
+    }
+
+    fun addTopCopy() {
+        viewModelScope.launch {
+            val selected = repo.getSelectedItem()
+            selected?.let {
+                val copy = DataEntity(
+                    it.id_hd_route,
+                    it.id_pos,
+                    Random.nextInt(),
+                    it.nom_nakl,
+                    it.nom_route,
+                    it.nom_zak,
+                    false,
+                    System.currentTimeMillis()
+                )
+                repo.addData(copy)
             }
         }
     }

@@ -12,5 +12,6 @@ data class DataEntity(
     val nom_nakl: String?,
     val nom_route: String,
     val nom_zak: String,
-    val isChecked: Boolean
+    val isChecked: Boolean,
+    val timeStamp: Long
 )

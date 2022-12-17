@@ -15,7 +15,7 @@ interface DataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addData(data: DataEntity)
 
-    @Query("SELECT * FROM data")
+    @Query("SELECT * FROM data ORDER BY timeStamp DESC")
     fun getAllData() : LiveData<List<DataEntity>>
 
     @Transaction

@@ -31,7 +31,10 @@ class ScreenAdapter: RecyclerView.Adapter<ScreenViewHolder>() {
     override fun onBindViewHolder(holder: ScreenViewHolder, position: Int) {
         val item = getItem(position)
         if (!item.isChecked) {
-            holder.binding.item.setCardBackgroundColor(Color.parseColor("#5DA18A"))
+//            holder.binding.item.setCardBackgroundColor(Color.parseColor("#5DA18A"))
+            holder.binding.item.setCardBackgroundColor(
+                holder.itemView.context.getColor(R.color.dark_green)
+            )
         } else{
             holder.binding.item.setCardBackgroundColor(Color.parseColor("#3B6758"))
         }
