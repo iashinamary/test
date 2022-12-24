@@ -15,6 +15,7 @@ import com.example.test_app.models.toDataEntity
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.lang.Exception
+import java.util.*
 import kotlin.random.Random
 
 class MainActivityViewModel(
@@ -65,6 +66,24 @@ class MainActivityViewModel(
                     it.nom_zak,
                     false,
                     System.currentTimeMillis()
+                )
+                repo.addData(copy)
+            }
+        }
+    }
+    fun addBottomCopy() {
+        viewModelScope.launch {
+            val selected = repo.getSelectedItem()
+            selected?.let {
+                val copy = DataEntity(
+                    it.id_hd_route,
+                    it.id_pos,
+                    Random.nextInt(),
+                    it.nom_nakl,
+                    it.nom_route,
+                    it.nom_zak,
+                    false,
+                    System.currentTimeMillis() * -1
                 )
                 repo.addData(copy)
             }

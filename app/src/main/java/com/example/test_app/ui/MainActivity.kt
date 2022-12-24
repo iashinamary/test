@@ -37,6 +37,7 @@ class MainActivity: AppCompatActivity() {
             addToBottom.setOnClickListener {
                 counterCopies++
                 counter.text = counterCopies.toString()
+                viewModel.addBottomCopy()
             }
             addToTop.setOnClickListener{
                 counterCopies++
