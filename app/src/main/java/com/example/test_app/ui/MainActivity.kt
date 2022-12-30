@@ -1,8 +1,12 @@
 package com.example.test_app.ui
 
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.test_app.broadcastReceiver.MyBroadcastReceiver
 import com.example.test_app.databinding.MainActivityLayoutBinding
 import com.example.test_app.ui.adapter.ScreenAdapter
 import com.example.test_app.ui.adapter.ScreenViewHolder
@@ -14,7 +18,10 @@ class MainActivity: AppCompatActivity() {
 
     private val viewModel by viewModel<MainActivityViewModel>()
 
-    private val adapter : ScreenAdapter by lazy { ScreenAdapter() }
+    private val adapter : ScreenAdapter by lazy { ScreenAdapter()}
+
+    private val receiver by lazy { MyBroadcastReceiver() }
+
 
     var counterCopies = 0
     
@@ -25,6 +32,7 @@ class MainActivity: AppCompatActivity() {
         subscribe()
         viewModel.loadData()
         clickButton()
+        this.registerReceiver(receiver, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
     }
 
     private fun clickButton() {
