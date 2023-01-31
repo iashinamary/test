@@ -1,12 +1,16 @@
 package com.example.test_app
 
 import androidx.room.Room
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.test_app.api.Api
 import com.example.test_app.api.ApiService
 import com.example.test_app.models.DataBase
+import com.example.test_app.oneTimeWorkRequest.MyWorker
 import com.example.test_app.repository.Repository
 import com.example.test_app.ui.MainActivityViewModel
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,7 +22,9 @@ val authClient: OkHttpClient = OkHttpClient.Builder()
     .build()
 val module = module{
 
+single{
 
+}
     single {
         Retrofit.Builder()
             .baseUrl("http://api-test.tdera.ru/api/")
