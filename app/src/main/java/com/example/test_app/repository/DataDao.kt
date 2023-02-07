@@ -30,7 +30,7 @@ interface DataDao {
     @Query("UPDATE data SET isChecked = 1 WHERE id_record =:id")
     suspend fun selectById(id: Int)
 
-    @Query("SELECT * FROM data WHERE isChecked == 1")
+    @Query("SELECT * FROM data WHERE isChecked == 1 LIMIT 1")
     suspend fun getSelectedItem(): DataEntity?
 
     @Query("UPDATE data SET isChecked = 0 WHERE id_record =:idRecord")

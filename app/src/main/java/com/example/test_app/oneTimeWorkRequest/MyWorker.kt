@@ -1,30 +1,53 @@
 package com.example.test_app.oneTimeWorkRequest
 
+import android.app.Notification
+import android.app.NotificationManager
 import android.content.Context
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import kotlinx.coroutines.coroutineScope
+import com.example.test_app.R
+import com.example.test_app.repository.Repository
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 
 class MyWorker(
     context: Context,
     params: WorkerParameters
-): CoroutineWorker(context, params) {
+): CoroutineWorker(context, params), KoinComponent {
     companion object {
-        const val NOTIFICATION_ID = 101
-        const val CHANNEL_ID = "channelID"
+        const val CHANNEL_ID = "channel_id"
+        const val NOTIFICATION_ID = 1
     }
 
-    override suspend fun doWork(){
-        try {
+    private val repository: Repository by inject()
+
+    val notificationManager: NotificationManager = context.getSystemService(NotificationManager::class.java)
+
+
+
+    override suspend fun doWork(): Result{
+        return try {
+            val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .build()
+            val chosenItem = repository.getSelectedItem()
+            chosenItem?.let { data ->
+                notificationManager.notify(1, notification.also {
+                    it.tickerText = data.nom_zak
+                })
+
+            }
+            Result.success()
         } catch (e: Exception) {
             e.printStackTrace()
+            Result.failure()
         }
 
     }
 
 
-    }
+
+}
 
