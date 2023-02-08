@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "data")
-data class DataEntity(
+ data class DataEntity(
     val id_hd_route: Int,
     val id_pos: Int,
     @PrimaryKey

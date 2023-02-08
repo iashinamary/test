@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_app.R
+import com.example.test_app.base.AdapterBasePicker
 import com.example.test_app.databinding.ItemLayoutBinding
 
 import com.example.test_app.models.DataEntity
@@ -20,7 +21,7 @@ import kotlin.coroutines.coroutineContext
 
 class ScreenAdapter: RecyclerView.Adapter<ScreenViewHolder>() {
 
-    private var onClick : ((DataEntity) -> Unit)? = null
+    private var actions : AdapterBasePicker<DataEntity>? = null
     private var list = listOf<DataEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScreenViewHolder {
@@ -48,9 +49,13 @@ class ScreenAdapter: RecyclerView.Adapter<ScreenViewHolder>() {
 
 
         holder.binding.item.setOnClickListener{
-
-            onClick?.invoke(item)
+            actions?.onClick(item)
             Toast.makeText(holder.itemView.context, "Item's selected", Toast.LENGTH_SHORT).show()
+        }
+
+        holder.binding.item.setOnLongClickListener {
+            actions?.onLongClick(item, holder.itemView)
+            true
         }
     }
 
@@ -58,8 +63,8 @@ class ScreenAdapter: RecyclerView.Adapter<ScreenViewHolder>() {
 
     private fun getItem(position: Int) = list[position]
 
-    fun bindOnClick(onClick: (DataEntity) -> Unit){
-        this.onClick = onClick
+    fun bindOnClick(actions: AdapterBasePicker<DataEntity>){
+        this.actions = actions
     }
 
     fun setList(newList: List<DataEntity>){

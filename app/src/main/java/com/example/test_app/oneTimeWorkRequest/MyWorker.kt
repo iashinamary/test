@@ -23,20 +23,19 @@ class MyWorker(
 
     private val repository: Repository by inject()
 
-    val notificationManager: NotificationManager = context.getSystemService(NotificationManager::class.java)
+    private val notificationManager: NotificationManager = context.getSystemService(NotificationManager::class.java)
 
 
 
     override suspend fun doWork(): Result{
         return try {
-            val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
+            val notificationBuilder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
-                .build()
             val chosenItem = repository.getSelectedItem()
             chosenItem?.let { data ->
-                notificationManager.notify(1, notification.also {
-                    it.tickerText = data.nom_zak
-                })
+                notificationManager.notify(1,
+                    notificationBuilder.setContentText(data.nom_zak).build()
+                )
 
             }
             Result.success()

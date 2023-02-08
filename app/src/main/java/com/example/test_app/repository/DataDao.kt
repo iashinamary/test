@@ -18,6 +18,11 @@ interface DataDao {
     @Query("SELECT * FROM data ORDER BY timeStamp DESC")
     fun getAllData() : LiveData<List<DataEntity>>
 
+    @Query("SELECT * FROM data ORDER BY timeStamp DESC")
+    fun getAllDataOneTime() : List<DataEntity>
+
+
+
     @Transaction
     suspend fun select(idRecord: Int){
         removeSelect()
